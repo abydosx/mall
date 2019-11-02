@@ -156,6 +156,11 @@
     select count(1) from mall_User
     where username=#{username}
   </select>
+
+  <select id="userEmailCheck" resultType="int" parameterType="String">
+    select count(1) from mall_User
+    where email=#{email}
+  </select>
   
   <select id="loginCheck" resultMap="BaseResultMap" parameterType="map">
     select
@@ -163,4 +168,39 @@
     from mall_user
     where username=#{username} and password =#{password}
   </select>
+
+  <select id="selectQuestion" resultType="string" parameterType="String">
+    select question from mall_User
+    where username=#{username}
+  </select>
+
+  <select id="answerCheck" resultType="int" parameterType="map">
+    select count(1) from mall_User
+    where username=#{username}
+    and question=#{question}
+    and answer=#{answer}
+  </select>
+
+  <update id="setNewPassword" parameterType="string">
+    update mall_User
+    set password =#{newPassword} update_time =now();
+    where username=#{username}
+  </update>
+
+  <select id="checkEmailByUserId" resultType="int" parameterType="map">
+    select count(1)
+    from mall_user
+    where
+    email = #{email}
+    and id != #{userId}
+  </select>
+
+  <select id="checkPassword" resultType="int" parameterType="map">
+    select count(1) from mall_User
+    where
+    password =#{oldPassword}
+    and id = #{userId}
+  </select>
+
+
 </mapper>

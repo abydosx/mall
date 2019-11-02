@@ -19,7 +19,7 @@ public enum ResponseCode {
         return code;
     }
 
-    public String getDis() {
+    public String getDesc() {
         return desc;
     }
 }
